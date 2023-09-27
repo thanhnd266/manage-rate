@@ -1,0 +1,22 @@
+.manage-user {
+    
+
+    .btn-add-user {
+        color: #21cf3c !important;
+        border-color: #21cf3c !important;
+
+        &:hover {
+            background-color: #21cf3c;
+            color: #fff !important;
+        }
+    }
+
+    .ant-table {
+        overflow: auto;
+
+        .ant-typography {
+            color: #21cf3c;
+            padding: 8px;
+        } 
+    }
+}

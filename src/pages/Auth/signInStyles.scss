@@ -1,0 +1,11 @@
+.login-page {
+    .ant-btn {
+        height: unset;
+        span {
+            font-size: 16px;
+        }
+        &:hover {
+            color: #fff !important;
+        }
+    }
+}

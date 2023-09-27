@@ -1,0 +1,124 @@
+.modal-watch-user {
+    .ant-modal {
+        width: fit-content !important;
+
+        .ant-modal-body {
+            .ant-form {
+                .ant-form-item {
+                    label {
+                        font-weight: 600;
+                    }
+
+                    .ant-collapse {
+                        border-radius: 4px;
+
+                        .ant-collapse-header-text {
+                            font-size: 16px;
+                            font-weight: 600;
+                        }
+
+                        .ant-collapse-content {
+                            max-height: 480px;
+                            overflow: auto;
+                        }
+                    }
+
+                    .ant-tree-switcher {
+                        cursor: unset;
+                    }
+
+                    .ant-tree-checkbox {
+                        padding: 4px 6px;
+
+                        .ant-tree-checkbox-inner {
+                            width: 20px;
+                            height: 20px;
+                            border-radius: unset;
+                        }
+                    }
+
+                    .ant-transfer {
+                        flex-direction: row-reverse;
+
+                        @media screen and (max-width: 525px) {
+                            flex-direction: column-reverse;
+                        }
+
+                        .ant-transfer-list {
+                            width: unset;
+                            height: unset;
+                            padding: 20px;
+                            max-height: 400px;
+                            min-width: 318px;
+                            overflow-y: auto;
+
+                            @media screen and (max-width: 768px) {
+                                min-width: 200px !important;
+                                padding: 10px;
+                            }
+                            .ant-transfer-list-header {
+                                padding: 0;
+                                .ant-transfer-list-header-dropdown {
+                                    display: none;
+                                  }
+
+                                .ant-transfer-list-header-selected {
+                                    margin-left: 10px;
+                                }
+                            }
+
+                            .ant-transfer-list-body-search-wrapper {
+                                padding: 10px 0;
+
+                                .ant-transfer-list-search {
+                                    padding: 0 10px;
+                                }
+
+                                @media screen and (max-width: 768px) {
+                                    input {
+                                        height: 30px;
+                                    }
+                                }
+                            }
+
+                            .ant-checkbox-inner, .ant-checkbox-input {
+                                width: 20px;
+                                height: 20px;
+                                border-radius: unset;
+                            }
+                        }
+
+                        .ant-transfer-operation {
+
+                            @media screen and (max-width: 525px) {
+                                margin: 10px 0;
+                                display: flex;
+                                flex-direction: row-reverse;
+
+                                .ant-btn-primary {
+                                    transform: rotate(-90deg) !important;
+                                    margin: 0 10px;
+                                }
+                            }
+
+                            .ant-btn-primary {
+                                transform: rotate(180deg);
+                                width: 30px;
+                                height: 30px;
+                                background: #21cf3c;
+
+                                &:hover {
+                                    background: #6bec7e;
+                                }
+
+                                &:disabled {
+                                    background: transparent;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

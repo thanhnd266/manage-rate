@@ -1,0 +1,30 @@
+.manage-apppush {
+    .btn-add-apppush {
+        color: #21cf3c !important;
+        border-color: #21cf3c !important;
+
+        &:hover {
+            background-color: #21cf3c;
+            color: #fff !important;
+        }
+    }
+
+    .ant-table {
+        overflow: auto;
+
+        .ant-typography {
+            color: #21cf3c;
+            padding: 8px;
+        } 
+
+        .ant-table-tbody {
+            tr {
+                cursor: pointer;
+                transition: all .3s ease-in-out;
+                &:hover {
+                    background-color: #d9d9d9 !important;
+                }
+            }
+        }
+    }
+}

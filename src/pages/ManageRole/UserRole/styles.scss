@@ -1,0 +1,15 @@
+.manage-role {
+    .btn-add-role {
+        color: #21cf3c !important;
+        border-color: #21cf3c !important;
+
+        &:hover {
+            background-color: #21cf3c;
+            color: #fff !important;
+        }
+    }
+
+    .ant-table {
+        overflow: auto;
+    }
+}

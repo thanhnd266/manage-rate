@@ -1,0 +1,35 @@
+#filter-user-info {
+    .ant-row {
+      .ant-col {
+        .ant-form-item {
+          margin-bottom: 10px;
+        }
+  
+        .ant-form-item-label {
+          font-weight: 500;
+          font-size: 16px;
+          padding: 0;
+  
+          label {
+            height: unset;
+            margin-bottom: 4px;
+          }
+        }
+      }
+    }
+  
+    .ant-space-item {
+      margin-bottom: 4px;
+  
+      .btn-search {
+        color: #21cf3c !important;
+        border-color: #21cf3c !important;
+  
+        &:hover {
+          background-color: #21cf3c;
+          color: #fff !important;
+        }
+      }
+    }
+  }
+  

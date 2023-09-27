@@ -1,0 +1,38 @@
+.ant-modal-wrap {
+  .modal-noti-warning {
+    .ant-modal-content {
+      border-radius: 4px;
+      padding: 4px 20px;
+
+      .anticon-info-circle {
+        svg {
+          path {
+            fill: #faad14;
+          }
+        }
+      }
+
+      .ant-modal-confirm-btns {
+        margin-top: 20px;
+        
+        .ant-btn {
+          border-radius: 4px;
+        }
+
+        .ant-btn-primary { //ok btn
+          border-color: #21cf3c;
+          color: #21cf3c;
+
+          &:hover {
+            background-color: #29dd44;
+            color: #fff;
+          }
+
+          &:focus-visible {
+            outline: unset;
+          }
+        }
+      }
+    }
+  }
+}

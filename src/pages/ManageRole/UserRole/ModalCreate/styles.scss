@@ -1,0 +1,41 @@
+.modal-create-role {
+    .ant-modal {
+        .ant-modal-body {
+            .ant-form {
+                .ant-form-item {
+                    label {
+                        font-weight: 600;
+                    }
+
+                    .ant-collapse {
+                        border-radius: 4px;
+
+                        .ant-collapse-header-text {
+                            font-size: 16px;
+                            font-weight: 600;
+                        }
+
+                        .ant-collapse-content {
+                            max-height: 400px;
+                            overflow: auto;
+                        }
+                    }
+
+                    .ant-tree-switcher {
+                        cursor: unset;
+                    }
+
+                    .ant-tree-checkbox {
+                        padding: 4px 6px;
+
+                        .ant-tree-checkbox-inner {
+                            width: 20px;
+                            height: 20px;
+                            border-radius: unset;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

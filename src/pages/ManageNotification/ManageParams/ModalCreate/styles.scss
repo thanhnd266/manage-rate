@@ -1,0 +1,25 @@
+.modal-create-params {
+    .ant-modal-body {
+        padding: 20px 20px 0 20px !important;
+
+        .ant-form-item-row {
+            display: flex;
+            justify-content: space-between;
+
+            .ant-form-item-label {
+                text-align: start;
+                max-width: unset;
+                flex: unset;
+            }
+    
+            .ant-form-item-control {
+                max-width: 350px;
+
+                .ant-input-password {
+                    padding-top: 0;
+                    padding-bottom: 0;
+                }
+            }
+        }
+    }
+}
