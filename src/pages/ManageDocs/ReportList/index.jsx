@@ -4,6 +4,7 @@ import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 import FormFilter from "./FormFilter";
 import BaseButton from "@/components/common/BaseButton";
+import { Link } from "react-router-dom";
 
 const data = [
   {
@@ -108,15 +109,26 @@ const ReportList = () => {
         />
 
         <div>
-          <BaseButton text="Thêm mới" />
 
-          <BaseButton text="Xem chi tiết" />
+          <BaseButton>
+            <Link to="add">Thêm mới</Link>
+          </BaseButton>
 
-          <BaseButton text="Sửa" />
+          <BaseButton>
+            <Link to="detail">Xem chi tiết</Link>
+          </BaseButton>
 
-          <BaseButton text="Sao chép" />
+          <BaseButton>
+            <Link to="detail">Sửa</Link>
+          </BaseButton>
 
-          <BaseButton text="Xóa" />
+          <BaseButton>
+            <Link to="copy">Sao chép</Link>
+          </BaseButton>
+
+          <BaseButton>
+            <Link to="remove">Xóa</Link>
+          </BaseButton>
         </div>
 
         <FormFilter />
@@ -124,7 +136,7 @@ const ReportList = () => {
         <BaseTable
           columns={columns}
           rowSelection={{
-            type: "checkbox",
+            type: "radio",
             ...rowSelection,
           }}
           data={data}

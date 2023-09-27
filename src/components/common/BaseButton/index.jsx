@@ -4,6 +4,7 @@ import React from "react";
 const BaseButton = ({ 
     icon, 
     text,
+    children,
     className,
     ...props
 }) => {
@@ -14,6 +15,7 @@ const BaseButton = ({
     >
         {icon && <span>{icon}</span>}
         {text && <span>{text}</span>}
+        {children}
     </Button>
   );
 };

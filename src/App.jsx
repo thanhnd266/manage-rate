@@ -59,7 +59,7 @@ const App = () => {
                   return (
                     <Fragment key={route.id}>
                       {route.children.map((child) => {
-                        if (child.children) {
+                        if (child.children) { //router display in sidebar
                           return (
                             <Fragment key={child.id}>
                               {child.children.map((subChild) => {
@@ -83,18 +83,36 @@ const App = () => {
                         }
 
                         return (
-                          <Route
-                            key={child.id}
-                            path={child.path}
-                            element={
-                              <ProtectedRoute
-                                requirePermission={child.permission}
-                                userPermission={userInfo?.permissions}
-                              >
-                                {child.component}
-                              </ProtectedRoute>
-                            }
-                          />
+                          <Fragment key={child.id}>
+                            <Route
+                              key={child.id}
+                              path={child.path}
+                              element={
+                                <ProtectedRoute
+                                  requirePermission={child.permission}
+                                  userPermission={userInfo?.permissions}
+                                >
+                                  {child.component}
+                                </ProtectedRoute>
+                              }
+                            />
+                            {child.childRouter?.map((subChild) => { //router no display in sidebar
+                              return (
+                                <Route
+                                  key={subChild.id}
+                                  path={subChild.path}
+                                  element={
+                                    <ProtectedRoute
+                                      requirePermission={subChild.permission}
+                                      userPermission={userInfo?.permissions}
+                                    >
+                                      {subChild.component}
+                                    </ProtectedRoute>
+                                  }
+                                />
+                              );
+                            })}
+                          </Fragment>
                         );
                       })}
                     </Fragment>
