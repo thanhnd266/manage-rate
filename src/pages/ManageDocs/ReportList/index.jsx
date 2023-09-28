@@ -4,7 +4,9 @@ import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 import FormFilter from "./FormFilter";
 import BaseButton from "@/components/common/BaseButton";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { ReportBtnNavigate, ReportListHeader } from "./styled";
+import BaseBreadcrumb from "@/components/common/BaseBreadcrumb";
 
 const data = [
   {
@@ -46,6 +48,8 @@ const data = [
 ];
 
 const ReportList = () => {
+
+  const navigate = useNavigate();
 
   const columns = [
     {
@@ -97,39 +101,29 @@ const ReportList = () => {
   return (
     <>
       <div>
-        <Breadcrumb
-          items={[
-            {
-              title: "Nghiệp vụ",
-            },
-            {
-              title: "Tín dụng",
-            },
-          ]}
-        />
+        <ReportListHeader>
+          
+          <BaseBreadcrumb
+            items={[
+              {
+                title: "Nghiệp vụ",
+              },
+              {
+                title: (
+                  <Link to="/report/credit">Tín dụng</Link>
+                ),
+              },
+            ]}
+          />
+        </ReportListHeader>
 
-        <div>
-
-          <BaseButton>
-            <Link to="add">Thêm mới</Link>
-          </BaseButton>
-
-          <BaseButton>
-            <Link to="detail">Xem chi tiết</Link>
-          </BaseButton>
-
-          <BaseButton>
-            <Link to="detail">Sửa</Link>
-          </BaseButton>
-
-          <BaseButton>
-            <Link to="copy">Sao chép</Link>
-          </BaseButton>
-
-          <BaseButton>
-            <Link to="remove">Xóa</Link>
-          </BaseButton>
-        </div>
+        <ReportBtnNavigate>
+          <BaseButton text="Thêm mới" onClick={() => navigate("add")} />
+          <BaseButton text="Xem chi tiết" onClick={() => navigate("detail")} />
+          <BaseButton text="Sửa" onClick={() => navigate("detail")} />
+          <BaseButton text="Sao chép" onClick={() => navigate("copy")} />
+          <BaseButton text="Xóa" onClick={() => navigate("remove")} />
+        </ReportBtnNavigate>
 
         <FormFilter />
 
