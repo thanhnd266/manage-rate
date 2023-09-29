@@ -1,16 +1,6 @@
 import InterestRateInfo from "@/components/InterestRateInfo";
 import BaseButton from "@/components/common/BaseButton";
-import {
-  Button,
-  Col,
-  DatePicker,
-  Form,
-  Input,
-  InputNumber,
-  Row,
-  Select,
-} from "antd";
-import React from "react";
+import { Col, DatePicker, Form, Input, Row, Select } from "antd";
 
 const TabGeneralInfo = () => {
   const [form] = Form.useForm();
@@ -19,13 +9,20 @@ const TabGeneralInfo = () => {
     console.log(values);
   };
 
+  const handleSubmitForm = () => {
+    const result = form.getFieldsValue();
+    console.log(result);
+  }
+
   return (
     <>
       <Form
         layout="vertical"
         form={form}
         onFinish={onFinishSearch}
-        initialValues={{}}
+        initialValues={{
+          users: [{}]
+        }}
       >
         <Row gutter={20}>
           <Col xs={24} sm={12} md={8} xl={6} xxl={6}>
@@ -371,9 +368,10 @@ const TabGeneralInfo = () => {
             </Form.Item>
           </Col>
         </Row>
+
+        <InterestRateInfo />
       </Form>
 
-      <InterestRateInfo />
 
       <Row justify="end" gutter={10} style={{ marginBottom: 12 }}>
         {/* <BaseButton type="primary" htmlType="submit">
@@ -385,19 +383,14 @@ const TabGeneralInfo = () => {
         </BaseButton> */}
 
         <Col>
-          <BaseButton type="primary" htmlType="submit">
+          <BaseButton type="primary" htmlType="submit" onClick={handleSubmitForm}>
             Lưu
           </BaseButton>
         </Col>
         <Col>
-          <BaseButton type="default">
-            Hủy bỏ
-          </BaseButton>
+          <BaseButton type="default">Hủy bỏ</BaseButton>
         </Col>
-
-        
       </Row>
-      
     </>
   );
 };

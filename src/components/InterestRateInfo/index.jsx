@@ -1,5 +1,5 @@
 import { Button, Col, Form, Input, Row, Select, Space } from "antd";
-import React from "react";
+import React, { Fragment } from "react";
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
 import { FormInterestRateHeader, FormInterestRateTable } from "./styled";
 import BaseButton from "../common/BaseButton";
@@ -21,15 +21,10 @@ const FormInterestRate = () => {
       </FormInterestRateHeader>
 
       <FormInterestRateTable>
-        <Form
-          name="dynamic_form_nest_item"
-          layout="vertical"
-          autoComplete="off"
-        >
           <Form.List name="users">
             {(fields, { add, remove }) => (
-              <>
-                <Row gutter={10}>
+              <Fragment>
+                {/* <Row gutter={10}>
                   <Col span={4}>
                     <Form.Item name="maCoPhieu" label="Mã cổ phiếu">
                       <Input />
@@ -37,13 +32,31 @@ const FormInterestRate = () => {
                   </Col>
 
                   <Col span={4}>
-                    <Form.Item name="ngayBatDau" label="Bắt đầu (Ngày T)">
+                    <Form.Item 
+                      name="ngayBatDau" 
+                      label="Bắt đầu (Ngày T)"
+                      rules={[
+                        {
+                          required: true,
+                          message: `Vui lòng nhập trường này!`,
+                        },
+                      ]}
+                    >
                       <Input />
                     </Form.Item>
                   </Col>
 
                   <Col span={4}>
-                    <Form.Item name="ngayKetThuc" label="Kết thúc (Ngày T)">
+                    <Form.Item 
+                      name="ngayKetThuc" 
+                      label="Kết thúc (Ngày T)"
+                      rules={[
+                        {
+                          required: true,
+                          message: `Vui lòng nhập trường này!`,
+                        },
+                      ]}
+                    >
                       <Input />
                     </Form.Item>
                   </Col>
@@ -52,6 +65,12 @@ const FormInterestRate = () => {
                     <Form.Item
                       name="laiSuatTrongHanNam"
                       label="Lãi suất trong hạn (năm)"
+                      rules={[
+                        {
+                          required: true,
+                          message: `Vui lòng nhập trường này!`,
+                        },
+                      ]}
                     >
                       <Input />
                     </Form.Item>
@@ -61,6 +80,12 @@ const FormInterestRate = () => {
                     <Form.Item
                       name="laiSuatTrongHanNgay"
                       label="Lãi suất trong hạn (ngày)"
+                      rules={[
+                        {
+                          required: true,
+                          message: `Vui lòng nhập trường này!`,
+                        },
+                      ]}
                     >
                       <Input />
                     </Form.Item>
@@ -74,23 +99,35 @@ const FormInterestRate = () => {
                       />
                     </Form.Item>
                   </Col>
-                </Row>
+                </Row> */}
                 {fields.map(({ key, name, ...restField }) => (
-                  <Row gutter={10}>
+                  <Row key={key} gutter={10}>
                     <Col span={4}>
-                      <Form.Item {...restField} name={[name, "maCoPhieu"]}>
+                      <Form.Item 
+                        {...restField} 
+                        name={[name, "maCoPhieu"]}
+                        label={key === 0 ? "Mã cổ phiếu" : ""}
+                      >
                         <Input />
                       </Form.Item>
                     </Col>
 
                     <Col span={4}>
-                      <Form.Item {...restField} name={[name, "ngayBatDau"]}>
+                      <Form.Item 
+                        {...restField} 
+                        name={[name, "ngayBatDau"]}
+                        label={key === 0 ? "Bắt đầu (Ngày T)" : ""}
+                      >
                         <Input />
                       </Form.Item>
                     </Col>
 
                     <Col span={4}>
-                      <Form.Item {...restField} name={[name, "ngayKetThuc"]}>
+                      <Form.Item 
+                        {...restField} 
+                        name={[name, "ngayKetThuc"]}
+                        label={key === 0 ? "Kết thúc (Ngày T)" : ""}
+                      >
                         <Input />
                       </Form.Item>
                     </Col>
@@ -99,6 +136,7 @@ const FormInterestRate = () => {
                       <Form.Item
                         {...restField}
                         name={[name, "laiSuatTrongHanNam"]}
+                        label={key === 0 ? "Lãi suất trong hạn (năm)" : ""}
                       >
                         <Input />
                       </Form.Item>
@@ -108,23 +146,31 @@ const FormInterestRate = () => {
                       <Form.Item
                         {...restField}
                         name={[name, "laiSuatTrongHanNgay"]}
+                        label={key === 0 ? "Lãi suất trong hạn (ngày)" : ""}
                       >
                         <Input />
                       </Form.Item>
                     </Col>
                     <Col span={4}>
-                      <BaseButton 
-                        icon={<i className="fa-solid fa-plus"></i>} 
-                        onClick={() => add()}
-                      />
-                      <MinusCircleOutlined onClick={() => remove(name)} />
+                      <Form.Item label={key === 0 ? " " : ""}>
+                        <BaseButton 
+                          icon={<i className="fa-solid fa-plus"></i>} 
+                          onClick={() => add()}
+                        />
+
+                        {key !== 0 && (
+                          <BaseButton 
+                            icon={<MinusCircleOutlined />}
+                            onClick={() => remove(name)}
+                          />
+                        )}
+                      </Form.Item>
                     </Col>
                   </Row>
                 ))}
-              </>
+              </Fragment>
             )}
           </Form.List>
-        </Form>
       </FormInterestRateTable>
     </>
   );

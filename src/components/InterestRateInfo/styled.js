@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-
 export const FormInterestRateHeader = styled.div`
     display: flex;
     align-items: center;
