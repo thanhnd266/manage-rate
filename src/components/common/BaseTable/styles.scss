@@ -3,30 +3,21 @@
   border-radius: 6px;
 
     .ant-table {
-      @apply shadow-md dark:shadow-none;
-      @apply shadow-[#999] dark:shadow-transparent;
       border-radius: 6px;
       overflow: auto;
       display: grid;
       grid-template-columns: 1fr;
 
       .ant-table-title {
-        @apply bg-[#777c85] dark:bg-boxdark;
-        @apply text-[#fff] dark:text-[#f5f5f5];
         padding: 12px;
       }
 
       .ant-table-container {
-        border: 1px solid;
-        @apply border-[#dbdbdb] dark:border-meta-4;
+        border: 1px solid #dbdbdb;
 
         .ant-table-thead {
           .ant-table-cell {
-            border-bottom: 1px solid;
             font-weight: 700;
-            @apply border-[#f0f0f0] dark:border-boxdark;
-            @apply bg-[#e8e9ea] dark:bg-meta-4;
-            @apply text-[#333] dark:text-bodydark;
           }
         }
       }
@@ -38,26 +29,7 @@
           .ant-typography {
             color: #21cf3c;
           }
-          .ant-table-row {
-            &:nth-child(even) {
-              @apply bg-[#f5f5f5] dark:bg-boxdark;
-            }
-            &:nth-child(odd) {
-              @apply bg-[#fff] dark:bg-boxdark;
-            }
-        
-            &:hover {
-              .ant-table-cell {
-                @apply bg-transparent dark:bg-meta-4;
-              }
-            }
-
-            .ant-table-cell {
-              border-bottom: 1px solid;
-              @apply border-[#f0f0f0] dark:border-boxdark;
-              @apply text-[#333] dark:text-[#f5f5f5];
-            }
-          }
+          
         }
       }
 }

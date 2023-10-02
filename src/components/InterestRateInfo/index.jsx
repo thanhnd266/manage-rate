@@ -1,10 +1,20 @@
-import { Button, Col, Form, Input, Row, Select, Space } from "antd";
-import React, { Fragment } from "react";
-import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
-import { FormInterestRateHeader, FormInterestRateTable } from "./styled";
+import { MinusCircleOutlined } from "@ant-design/icons";
+import { Col, Form, Input, Row, Select } from "antd";
+import { Fragment, useState } from "react";
 import BaseButton from "../common/BaseButton";
+import { FormInterestRateHeader, FormInterestRateTable } from "./styled";
 
-const FormInterestRate = () => {
+const FormInterestRate = ({ form }) => {
+
+  const handleChangeEndDate = (e, key) => {
+    if(isNaN(e.target.value)) {
+      return;
+    }
+    const endDate = form.getFieldValue("users")[key].ngayKetThuc;
+    console.log(form.getFieldsValue());
+    // form.setFieldValue(users[key+1], endDate + 1);
+  }
+
   return (
     <>
       <FormInterestRateHeader>
@@ -21,7 +31,9 @@ const FormInterestRate = () => {
       </FormInterestRateHeader>
 
       <FormInterestRateTable>
-          <Form.List name="users">
+          <Form.List 
+            name="users"
+          >
             {(fields, { add, remove }) => (
               <Fragment>
                 {/* <Row gutter={10}>
@@ -108,15 +120,21 @@ const FormInterestRate = () => {
                         name={[name, "maCoPhieu"]}
                         label={key === 0 ? "Mã cổ phiếu" : ""}
                       >
-                        <Input />
+                        <Input disabled />
                       </Form.Item>
                     </Col>
 
                     <Col span={4}>
                       <Form.Item 
                         {...restField} 
-                        name={[name, "ngayBatDau"]}
+                        name={[name, `ngayBatDau`]}
                         label={key === 0 ? "Bắt đầu (Ngày T)" : ""}
+                        rules={[
+                          {
+                            required: true,
+                            message: `Vui lòng nhập trường này!`,
+                          },
+                        ]}
                       >
                         <Input />
                       </Form.Item>
@@ -127,8 +145,14 @@ const FormInterestRate = () => {
                         {...restField} 
                         name={[name, "ngayKetThuc"]}
                         label={key === 0 ? "Kết thúc (Ngày T)" : ""}
+                        rules={[
+                          {
+                            required: true,
+                            message: `Vui lòng nhập trường này!`,
+                          },
+                        ]}
                       >
-                        <Input />
+                        <Input onChange={(e) => handleChangeEndDate(e, key)} />
                       </Form.Item>
                     </Col>
 
@@ -137,6 +161,12 @@ const FormInterestRate = () => {
                         {...restField}
                         name={[name, "laiSuatTrongHanNam"]}
                         label={key === 0 ? "Lãi suất trong hạn (năm)" : ""}
+                        rules={[
+                          {
+                            required: true,
+                            message: `Vui lòng nhập trường này!`,
+                          },
+                        ]}
                       >
                         <Input />
                       </Form.Item>
@@ -147,6 +177,12 @@ const FormInterestRate = () => {
                         {...restField}
                         name={[name, "laiSuatTrongHanNgay"]}
                         label={key === 0 ? "Lãi suất trong hạn (ngày)" : ""}
+                        rules={[
+                          {
+                            required: true,
+                            message: `Vui lòng nhập trường này!`,
+                          },
+                        ]}
                       >
                         <Input />
                       </Form.Item>

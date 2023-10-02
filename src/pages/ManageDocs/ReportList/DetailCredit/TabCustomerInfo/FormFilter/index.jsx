@@ -17,12 +17,12 @@ const FormFilter = () => {
     >
       <Row gutter={20}>
         <Col span={4}>
-          <Form.Item name="code" label="Mã loại hình tín dụng">
+          <Form.Item name="code" label="Số tài khoản">
             <Input />
           </Form.Item>
         </Col>
         <Col span={4}>
-          <Form.Item name="name" label="Tên loại hình">
+          <Form.Item name="name" label="Tên tiểu khoản">
             <Select>
               <Select.Option value="">Lựa chọn</Select.Option>
               <Select.Option value="phanvung">Tài liệu phân vùng</Select.Option>
@@ -35,7 +35,7 @@ const FormFilter = () => {
           </Form.Item>
         </Col>
         <Col span={4}>
-          <Form.Item name="policy" label="Loại chính sách">
+          <Form.Item name="policy" label="Tên khách hàng">
             <Select>
               <Select.Option value="">Lựa chọn</Select.Option>
               <Select.Option value="phanvung">Tài liệu phân vùng</Select.Option>
@@ -44,7 +44,7 @@ const FormFilter = () => {
           </Form.Item>
         </Col>
         <Col span={4}>
-          <Form.Item name="interestRate" label="Loại lãi suất">
+          <Form.Item name="interestRate" label="Trạng thái">
             <Select>
               <Select.Option value="">Lựa chọn</Select.Option>
               <Select.Option value="phanvung">Tài liệu phân vùng</Select.Option>

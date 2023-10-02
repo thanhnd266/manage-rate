@@ -1,23 +1,23 @@
 import BaseModal from '@/components/common/BaseModal';
 import { useState } from 'react';
 
-const RemoveCredit = ({ setIsOpenModalRemove, currentRecord, setCurrentRecord, ...props }) => {
+const ModalDelete = ({ setIsOpenModalDelete, currentRecord, setCurrentRecord, ...props }) => {
 
   const [loading, setLoading] = useState(false);
 
-    const handleDeleteParam = async () => {
+    const handleDelete = async () => {
       console.log("Deleting...");
     }
 
     const handleCancel = () => {
-        setIsOpenModalRemove(false);
+        setIsOpenModalDelete(false);
     }
 
   return (
     <BaseModal 
         title="Xóa biến"  
         content={`Bạn có chắc chắn muốn xóa biến $${currentRecord?.code}?`}
-        onOk={handleDeleteParam}
+        onOk={handleDelete}
         okText="Xóa"
         onCancel={handleCancel}
         cancelText="Hủy"
@@ -32,4 +32,4 @@ const RemoveCredit = ({ setIsOpenModalRemove, currentRecord, setCurrentRecord, .
   )
 }
 
-export default RemoveCredit
+export default ModalDelete

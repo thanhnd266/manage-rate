@@ -1,8 +1,7 @@
 import BaseButton from "@/components/common/BaseButton";
-import { Button, Col, DatePicker, Form, Input, Row, Select, Space } from "antd";
-const { RangePicker } = DatePicker;
+import { Button, Col, DatePicker, Form, Input, Space } from "antd";
 import "./styles.scss";
-import dayjs from "dayjs";
+const { RangePicker } = DatePicker;
 
 const FormFilter = ({ setSearchMode, params, setParams, setFilter }) => {
   const [form] = Form.useForm();

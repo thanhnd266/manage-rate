@@ -1,6 +1,6 @@
 import InterestRateInfo from "@/components/InterestRateInfo";
 import BaseButton from "@/components/common/BaseButton";
-import { Col, DatePicker, Form, Input, Row, Select } from "antd";
+import { Col, DatePicker, Form, Input, InputNumber, Row, Select } from "antd";
 
 const TabGeneralInfo = () => {
   const [form] = Form.useForm();
@@ -21,9 +21,7 @@ const TabGeneralInfo = () => {
         form={form}
         onFinish={onFinishSearch}
         initialValues={{
-          users: [{
-            ngayBatDau: 0
-          }]
+          users: [{}]
         }}
       >
         <Row gutter={20}>
@@ -59,7 +57,25 @@ const TabGeneralInfo = () => {
 
           <Col xs={24} sm={12} md={8} xl={6} xxl={6}>
             <Form.Item
-              name="hanMucGN"
+              name="LoaiChinhSach"
+              label="Loại chính sách"
+              rules={[
+                {
+                  required: true,
+                  message: `Vui lòng nhập trường này!`,
+                },
+              ]}
+            >
+              <Select>
+                <Select.Option value="fix">Cố định</Select.Option>
+                <Select.Option value="noFix">Ưu đãi</Select.Option>
+              </Select>
+            </Form.Item>
+          </Col>
+
+          <Col xs={24} sm={12} md={8} xl={6} xxl={6}>
+            <Form.Item
+              name="HanMucGiaiNgan"
               label="Hạn mức GN"
               rules={[
                 {
@@ -68,7 +84,10 @@ const TabGeneralInfo = () => {
                 },
               ]}
             >
-              <Input addonAfter={<span>VNĐ</span>} />
+              <InputNumber
+                formatter={(value) => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')} 
+                addonAfter={<span>VNĐ</span>} 
+              />
             </Form.Item>
           </Col>
 
@@ -98,7 +117,10 @@ const TabGeneralInfo = () => {
                 },
               ]}
             >
-              <Input addonAfter={<span>Ngày/năm</span>} />
+              <Select>
+                <Select.Option value="365">365 ngày/năm</Select.Option>
+                <Select.Option value="360">360 ngày/năm</Select.Option>
+              </Select>
             </Form.Item>
           </Col>
 
@@ -114,24 +136,6 @@ const TabGeneralInfo = () => {
               ]}
             >
               <Input addonAfter={<span>%/năm</span>} />
-            </Form.Item>
-          </Col>
-
-          <Col xs={24} sm={12} md={8} xl={6} xxl={6}>
-            <Form.Item
-              name="tinhTrenLaiQH"
-              label="Tính trên lãi QH"
-              rules={[
-                {
-                  required: true,
-                  message: "Vui lòng nhập trường này!",
-                },
-              ]}
-            >
-              <Select>
-                <Select.Option value="yes">Có</Select.Option>
-                <Select.Option value="no">Không</Select.Option>
-              </Select>
             </Form.Item>
           </Col>
 
@@ -161,7 +165,10 @@ const TabGeneralInfo = () => {
                 },
               ]}
             >
-              <Input addonAfter={<span>VNĐ</span>} />
+              <InputNumber
+                formatter={(value) => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')} 
+                addonAfter={<span>VNĐ</span>} 
+              />
             </Form.Item>
           </Col>
 
@@ -245,7 +252,7 @@ const TabGeneralInfo = () => {
                 },
               ]}
             >
-              <Input addonAfter={<span>%/năm</span>} />
+              <Input addonAfter={<span>%</span>} />
             </Form.Item>
           </Col>
 
@@ -266,24 +273,6 @@ const TabGeneralInfo = () => {
 
           <Col xs={24} sm={12} md={8} xl={6} xxl={6}>
             <Form.Item
-              name="giaHanOnline"
-              label="Gia hạn Online"
-              rules={[
-                {
-                  required: true,
-                  message: `Vui lòng nhập trường này!`,
-                },
-              ]}
-            >
-              <Select>
-                <Select.Option value="yes">Có</Select.Option>
-                <Select.Option value="no">Không</Select.Option>
-              </Select>
-            </Form.Item>
-          </Col>
-
-          <Col xs={24} sm={12} md={8} xl={6} xxl={6}>
-            <Form.Item
               name="phamViHienThiOnline"
               label="Phạm vi hiển thị Online"
               rules={[
@@ -298,6 +287,24 @@ const TabGeneralInfo = () => {
                 <Select.Option value="AFTYPE2">AFTYPE2</Select.Option>
                 <Select.Option value="AFTYPE3">AFTYPE3</Select.Option>
                 <Select.Option value="AFTYPE4">AFTYPE4</Select.Option>
+              </Select>
+            </Form.Item>
+          </Col>
+
+          <Col xs={24} sm={12} md={8} xl={6} xxl={6}>
+            <Form.Item
+              name="giaHanOnline"
+              label="Gia hạn Online"
+              rules={[
+                {
+                  required: true,
+                  message: `Vui lòng nhập trường này!`,
+                },
+              ]}
+            >
+              <Select>
+                <Select.Option value="yes">Có</Select.Option>
+                <Select.Option value="no">Không</Select.Option>
               </Select>
             </Form.Item>
           </Col>
@@ -371,7 +378,7 @@ const TabGeneralInfo = () => {
           </Col>
         </Row>
 
-        <InterestRateInfo form={form} />
+        <InterestRateInfo />
       </Form>
 
 

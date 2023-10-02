@@ -45,18 +45,6 @@ export const ROUTERS = [
             component: <DetailCredit />,
             permission: "dsc.auth.user",
           },
-          {
-            id: 1.13,
-            path: "/report/credit/copy",
-            component: <CopyCredit />,
-            permission: "dsc.auth.user",
-          },
-          {
-            id: 1.14,
-            path: "/report/credit/remove",
-            component: <RemoveCredit />,
-            permission: "dsc.auth.user",
-          },
         ]
       },
       {
