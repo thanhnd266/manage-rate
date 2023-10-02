@@ -22,6 +22,7 @@ const TabGeneralInfo = () => {
         onFinish={onFinishSearch}
         initialValues={{
           users: [{
+            id: 0,
             ngayBatDau: 0
           }]
         }}

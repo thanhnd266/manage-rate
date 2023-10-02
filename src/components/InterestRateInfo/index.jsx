@@ -1,18 +1,66 @@
 import { MinusCircleOutlined } from "@ant-design/icons";
-import { Col, Form, Input, Row, Select } from "antd";
+import { Col, Form, Input, InputNumber, Row, Select } from "antd";
 import { Fragment, useState } from "react";
 import BaseButton from "../common/BaseButton";
 import { FormInterestRateHeader, FormInterestRateTable } from "./styled";
 
 const FormInterestRate = ({ form }) => {
 
-  const handleChangeEndDate = (e, key) => {
-    if(isNaN(e.target.value)) {
+  const handleChangeEndDate = (e, index) => {
+    if(isNaN(e)) {
       return;
     }
-    const endDate = form.getFieldValue("users")[key].ngayKetThuc;
-    console.log(form.getFieldsValue());
-    // form.setFieldValue(users[key+1], endDate + 1);
+    const arrUsers = form.getFieldValue("users");
+    const endDate = arrUsers[index].ngayKetThuc;
+    form.setFieldValue("users", arrUsers?.map((el, i) => {
+      if(i === index+1) {
+        if(!el) {
+          el = {};
+        }
+        el.ngayBatDau = endDate + 1;
+      }
+      return el;
+    }));
+  };
+
+  const handleBlurEndDate = (e, index) => {
+    let value = +e.target.value;
+    if(isNaN(value)) {
+      alert("Ngày kết thúc phải là số nguyên")
+      return;
+    }
+
+    const arrUsers = form.getFieldValue("users");
+
+    if(value < arrUsers[index].ngayBatDau) {
+      alert("Ngày kết thúc phải lớn hơn ngày bắt đầu")
+    }
+  }
+
+  const handleAddRow = (addFn, index) => {
+    let arrUsers = form.getFieldValue("users");
+    if(arrUsers[index]?.ngayKetThuc) {
+
+      arrUsers.splice(index+1, 0, {
+        ngayBatDau: arrUsers[index]?.ngayKetThuc + 1,
+      });
+
+      form.setFieldValue("users", arrUsers);
+    } else {
+      addFn();
+    }
+  };
+
+  const handleRemoveRow = (removeFn, index) => {
+    const arrUsers = form.getFieldValue("users");
+    if(arrUsers[index-1]?.ngayKetThuc && arrUsers[index+1]?.ngayBatDau) {
+      arrUsers.splice(index, 1); // xoa phan tu o index
+      console.log(arrUsers);
+      arrUsers[index].ngayBatDau = arrUsers[index-1].ngayKetThuc + 1; //set lai el moi tai vi tri index
+      form.setFieldValue("users", arrUsers);
+    } else {
+      removeFn(index);
+    }
   }
 
   return (
@@ -36,82 +84,6 @@ const FormInterestRate = ({ form }) => {
           >
             {(fields, { add, remove }) => (
               <Fragment>
-                {/* <Row gutter={10}>
-                  <Col span={4}>
-                    <Form.Item name="maCoPhieu" label="Mã cổ phiếu">
-                      <Input />
-                    </Form.Item>
-                  </Col>
-
-                  <Col span={4}>
-                    <Form.Item 
-                      name="ngayBatDau" 
-                      label="Bắt đầu (Ngày T)"
-                      rules={[
-                        {
-                          required: true,
-                          message: `Vui lòng nhập trường này!`,
-                        },
-                      ]}
-                    >
-                      <Input />
-                    </Form.Item>
-                  </Col>
-
-                  <Col span={4}>
-                    <Form.Item 
-                      name="ngayKetThuc" 
-                      label="Kết thúc (Ngày T)"
-                      rules={[
-                        {
-                          required: true,
-                          message: `Vui lòng nhập trường này!`,
-                        },
-                      ]}
-                    >
-                      <Input />
-                    </Form.Item>
-                  </Col>
-
-                  <Col span={4}>
-                    <Form.Item
-                      name="laiSuatTrongHanNam"
-                      label="Lãi suất trong hạn (năm)"
-                      rules={[
-                        {
-                          required: true,
-                          message: `Vui lòng nhập trường này!`,
-                        },
-                      ]}
-                    >
-                      <Input />
-                    </Form.Item>
-                  </Col>
-
-                  <Col span={4}>
-                    <Form.Item
-                      name="laiSuatTrongHanNgay"
-                      label="Lãi suất trong hạn (ngày)"
-                      rules={[
-                        {
-                          required: true,
-                          message: `Vui lòng nhập trường này!`,
-                        },
-                      ]}
-                    >
-                      <Input />
-                    </Form.Item>
-                  </Col>
-
-                  <Col span={4}>
-                    <Form.Item label=" ">
-                      <BaseButton 
-                        icon={<i className="fa-solid fa-plus"></i>} 
-                        onClick={() => add()}
-                      />
-                    </Form.Item>
-                  </Col>
-                </Row> */}
                 {fields.map(({ key, name, ...restField }) => (
                   <Row key={key} gutter={10}>
                     <Col span={4}>
@@ -152,7 +124,10 @@ const FormInterestRate = ({ form }) => {
                           },
                         ]}
                       >
-                        <Input onChange={(e) => handleChangeEndDate(e, key)} />
+                        <InputNumber 
+                          onChange={(e) => handleChangeEndDate(e, name)} 
+                          onBlur={(e) => handleBlurEndDate(e, name)}  
+                        />
                       </Form.Item>
                     </Col>
 
@@ -191,13 +166,13 @@ const FormInterestRate = ({ form }) => {
                       <Form.Item label={key === 0 ? " " : ""}>
                         <BaseButton 
                           icon={<i className="fa-solid fa-plus"></i>} 
-                          onClick={() => add()}
+                          onClick={() => handleAddRow(add, name)}
                         />
 
                         {key !== 0 && (
                           <BaseButton 
                             icon={<MinusCircleOutlined />}
-                            onClick={() => remove(name)}
+                            onClick={() => handleRemoveRow(remove, name)}
                           />
                         )}
                       </Form.Item>
